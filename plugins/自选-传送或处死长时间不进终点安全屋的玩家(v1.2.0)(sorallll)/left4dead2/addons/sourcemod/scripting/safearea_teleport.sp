@@ -72,6 +72,7 @@ float
 	g_vOrigin[3];
 
 bool
+	//g_bLateLoad,
 	g_bCvarAllow,
 	g_bMapStarted,
 	g_bTranslation,
@@ -137,6 +138,24 @@ methodmap TerrorNavArea {
 		}
 	}
 };
+
+GlobalForward /*g_hSafeareaEndt, g_hSafeareaStart, */g_hSafeareaTeleport;
+
+public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max)
+{
+	//CreateNatives();
+	GlobalForwards();
+	//g_bLateLoad = late;
+	RegPluginLibrary("safearea_teleport");
+	return APLRes_Success;
+}
+//创建转发.
+void GlobalForwards() 
+{
+	//g_hSafeareaEndt 	= new GlobalForward("OnSafeareaEnd", 		ET_Event, Param_Cell);	//玩家进入终点安全区时.
+	//g_hSafeareaStart 	= new GlobalForward("OnSafeareaStart", 		ET_Event, Param_Cell);	//玩家离开终点安全区时.
+	g_hSafeareaTeleport = new GlobalForward("OnSafeareaTeleport", 	ET_Event);				//启用终点传送或处死时.
+}
 
 // 如果签名失效，请到此处更新https://github.com/Psykotikism/L4D1-2_Signatures
 public Plugin myinfo = {
@@ -605,6 +624,10 @@ void  OnStartTouch(const char[] output, int caller, int activator, float delay) 
 			else
 				PrintHintToSurvivor("%d名生还者已到达终点区域(需要%d名)", reached, value);
 		}
+		//PrintToChatAll("\x04[提示]\x05(%N)进入终点安全区.", activator);
+		//Call_StartForward(g_hSafeareaStart);
+		//Call_PushCell(activator);
+		//Call_Finish();
 		return;
 	}
 
@@ -613,6 +636,9 @@ void  OnStartTouch(const char[] output, int caller, int activator, float delay) 
 
 	delete g_hTimer;
 	g_hTimer = CreateTimer(1.0, tmrCountdown, _, TIMER_REPEAT);
+
+	Call_StartForward(g_hSafeareaTeleport);
+	Call_Finish();
 }
 
 void OnEndTouch(const char[] output, int caller, int activator, float delay) {
@@ -688,6 +714,10 @@ void OnEndTouch(const char[] output, int caller, int activator, float delay) {
 			else
 				PrintHintToSurvivor("%d名生还者已到达终点区域(需要%d名)", reached, value);
 		}
+		//PrintToChatAll("\x04[提示]\x05(%N)离开终点安全区.", activator);
+		//Call_StartForward(g_hSafeareaEndt);
+		//Call_PushCell(activator);
+		//Call_Finish();
 		return;
 	}
 
@@ -696,6 +726,9 @@ void OnEndTouch(const char[] output, int caller, int activator, float delay) {
 
 	delete g_hTimer;
 	g_hTimer = CreateTimer(1.0, tmrCountdown, _, TIMER_REPEAT);
+
+	Call_StartForward(g_hSafeareaTeleport);
+	Call_Finish();
 }
 
 Action tmrCountdown(Handle timer) {
