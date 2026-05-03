@@ -58,7 +58,7 @@ public void Event_WeaponReload(Event event, const char[] name, bool dontBroadcas
                 else
                 {
                     // Chat 模式增加了简单的绿色前缀，方便分辨
-                    PrintToChat(client, "\x04[剩余备弹]->\x05%s", message);
+                    PrintToChat(client, "\x04[提示]\x05%s", message);
                 }
             }
         }
