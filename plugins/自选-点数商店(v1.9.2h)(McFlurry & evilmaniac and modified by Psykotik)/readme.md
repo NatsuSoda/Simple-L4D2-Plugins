@@ -1,0 +1,159 @@
+# 自选-点数商店(v1.9.2h)(McFlurry & evilmaniac and modified by Psykotik)
+
+## 简介
+
+Customized edition of McFlurry's points system
+
+## 包含文件
+
+- Points System
+- [PS] Buy Extended Support Structure
+
+## 可用指令
+
+- `sm_points`
+- `sm_buy`
+- `sm_shop`
+- `sm_store`
+- `sm_repeatbuy`
+- `sm_heal` [管理员指令] (权限: ADMFLAG_SLAY)
+- `sm_delold` [管理员指令] (权限: ADMFLAG_ROOT)
+- `sm_listpoints` [管理员指令] (权限: ADMFLAG_ROOT)
+- `sm_setpoints` [管理员指令] (权限: ADMFLAG_ROOT)
+- `sm_givepoints` [管理员指令] (权限: ADMFLAG_ROOT)
+- `sm_listmodules` [管理员指令] (权限: ADMFLAG_GENERIC)
+- `sm_buy`
+
+## 配置指令 (ConVar)
+
+- `l4d2_points_allow` 默认值: `1` - 0=禁用插件, 1=启用插件.
+- `l4d2_points_modes` 默认值: ``
+- `l4d2_points_modes_off` 默认值: ``
+- `l4d2_points_modes_tog` 默认值: `0` - 在这些游戏模式下打开插件. 0=全部, 1=合作社, 2=生存, 4=对战, 8=清道夫.将数字相加.
+- `l4d2_points_start` 默认值: `200` - 玩家初始积分
+- `l4d2_points_notify` 默认值: `0` - 开关提示信息?
+- `l4d2_points_tank_limit` 默认值: `2` - 每回合允许购买多少只坦克
+- `l4d2_points_witch_limit` 默认值: `5` - 每回合允许购买多少只女巫
+- `l4d2_points_cikills` 默认值: `15` - 你需要杀多少普通感染者才能获得杀戮赏金
+- `l4d2_points_headshots` 默认值: `15` - 你需要多少次爆头感染者才能获得猎头奖金
+- `l4d2_points_traitor_limit` 默认值: `2` - 允许同时存在多少个被感染者玩家
+- `l4d2_points_survivor_required` 默认值: `5` - 至少需要存在多少名真人生还者才允许购买到感染者团队
+- `l4d2_points_cat_weapons` 默认值: `1` - 启用武器项目购买
+- `l4d2_points_cat_upgrades` 默认值: `1` - 启用升级项目购买
+- `l4d2_points_cat_health` 默认值: `1` - 启用生命项目购买
+- `l4d2_points_cat_traitor` 默认值: `1` - 启用内鬼项目购买
+- `l4d2_points_cat_special` 默认值: `1` - 启用特殊项目购买
+- `l4d2_points_cat_melee` 默认值: `1` - 启用近战项目购买
+- `l4d2_points_cat_rifles` 默认值: `1` - 启用步枪项目购买
+- `l4d2_points_cat_smg` 默认值: `1` - 启用冲锋项目购买
+- `l4d2_points_cat_snipers` 默认值: `1` - 启用狙击项目购买
+- `l4d2_points_cat_shotguns` 默认值: `1` - 启动散弹项目购买
+- `l4d2_points_cat_throwables` 默认值: `1` - 启用投掷项目购买
+- `l4d2_points_cat_misc` 默认值: `1` - 启用杂项项目购买
+- `l4d2_points_pistol` 默认值: `5` - 购买小手枪需要多少积分
+- `l4d2_points_magnum` 默认值: `10` - 购买马格南手枪需要多少积分
+- `l4d2_points_smg` 默认值: `20` - 购买乌兹冲锋枪需要多少积分
+- `l4d2_points_silenced` 默认值: `20` - 购买消音冲锋枪需要多少积分
+- `l4d2_points_mp5` 默认值: `20` - 购买MP5冲锋枪需要多少积分
+- `l4d2_points_m16` 默认值: `80` - 购买M16突击步枪需要多少积分
+- `l4d2_points_ak47` 默认值: `80` - 购买AK47突击步枪需要多少积分
+- `l4d2_points_scar` 默认值: `50` - 购买SCAR-H突击步枪需要多少积分
+- `l4d2_points_sg552` 默认值: `30` - 购买SG552突击步枪需要多少积分
+- `l4d2_points_military` 默认值: `150` - 购买30发连发狙击枪需要多少积分
+- `l4d2_points_awp` 默认值: `800` - 购买awp狙击枪需要多少积分
+- `l4d2_points_scout` 默认值: `500`
+- `l4d2_points_hunting` 默认值: `80`
+- `l4d2_points_pump` 默认值: `25` - 购买一代木喷需要多少积分
+- `l4d2_points_chrome` 默认值: `25` - 购买二代铁喷需要多少积分
+- `l4d2_points_auto` 默认值: `120` - 购买一代连喷需要多少积分
+- `l4d2_points_spas` 默认值: `120` - 购买二代连喷需要多少积分
+- `l4d2_points_grenade` 默认值: `800` - 购买榴弹发射器需要多少积分
+- `l4d2_points_m60` 默认值: `1100` - 购买M60机枪需要多少积分
+- `l4d2_points_gascan` 默认值: `150` - 购买汽油桶需要多少积分
+- `l4d2_points_oxygen` 默认值: `50` - 购买氧气罐需要多少积分
+- `l4d2_points_propane` 默认值: `50` - 购买燃气罐需要多少积分
+- `l4d2_points_gnome` 默认值: `50` - 购买侏儒人偶需要多少积分
+- `l4d2_points_cola` 默认值: `50` - 购买可乐瓶需要多少积分
+- `l4d2_points_fireworks` 默认值: `50` - 购买烟花盒需要多少积分
+- `l4d2_points_fireaxe` 默认值: `55` - 购买消防斧需要多少积分
+- `l4d2_points_fryingpan` 默认值: `45` - 购买平底锅需要多少积分
+- `l4d2_points_machete` 默认值: `100` - 购买小砍刀需要多少积分
+- `l4d2_points_baseballbat` 默认值: `30` - 购买棒球棒需要多少积分
+- `l4d2_points_crowbar` 默认值: `30` - 购买撬棍需要多少积分
+- `l4d2_points_cricketbat` 默认值: `30` - 购买板球棒需要多少积分
+- `l4d2_points_tonfa` 默认值: `35` - 购买警棍需要多少积分
+- `l4d2_points_katana` 默认值: `100` - 购买武士刀需要多少积分
+- `l4d2_points_electricguitar` 默认值: `30` - 购买电吉他需要多少积分
+- `l4d2_points_knife` 默认值: `30` - 购买小刀需要多少积分
+- `l4d2_points_golfclub` 默认值: `30` - 购买高尔夫球棍需要多少积分
+- `l4d2_points_shovel` 默认值: `25` - 购买铁铲需要多少积分
+- `l4d2_points_pitchfork` 默认值: `20` - 购买干草叉需要多少积分
+- `l4d2_points_custommelee` 默认值: `200` - 购买自定义近战需要多少积分
+- `l4d2_points_chainsaw` 默认值: `20` - 购买电锯需要多少积分
+- `l4d2_points_pipe` 默认值: `100` - 购买土制炸弹需要多少积分
+- `l4d2_points_molotov` 默认值: `100` - 购买燃烧瓶需要多少积分
+- `l4d2_points_bile` 默认值: `100` - 购买胆汁需要多少积分
+- `l4d2_points_medkit` 默认值: `80` - 购买医疗包需要多少积分
+- `l4d2_points_defib` 默认值: `20` - 购买电击器需要多少积分
+- `l4d2_points_adrenaline` 默认值: `50` - 购买肾上腺素需要多少积分
+- `l4d2_points_pills` 默认值: `50` - 购买止痛药需要多少积分
+- `l4d2_points_explosive_ammo` 默认值: `20` - 购买高爆弹药需要多少积分
+- `l4d2_points_incendiary_ammo` 默认值: `20` - 购买燃烧弹药需要多少积分
+- `l4d2_points_explosive_ammo_pack` 默认值: `35` - 购买高爆弹药包需要多少积分
+- `l4d2_points_incendiary_ammo_pack` 默认值: `35` - 购买燃烧弹药包需要多少积分
+- `l4d2_points_laser` 默认值: `25` - 购买激光瞄准器需要多少积分
+- `l4d2_points_survivor_heal` 默认值: `300` - 购买回满血量需要多少积分
+- `l4d2_points_survivor_resurrection` 默认值: `500` - 购买复活需要多少积分
+- `l4d2_points_refill` 默认值: `35` - 购买弹药补充需要多少积分
+- `l4d2_points_suicide` 默认值: `20` - 特感玩家购买自杀需要多少积分
+- `l4d2_points_infected_heal` 默认值: `250` - 感染者治愈自己需要多少积分
+- `l4d2_points_smoker` 默认值: `50` - 购买一次成为smoker的机会需要多少积分
+- `l4d2_points_boomer` 默认值: `50` - 购买一次成为boomer的机会需要多少积分
+- `l4d2_points_hunter` 默认值: `50` - 购买一次成为hunter的机会需要多少积分
+- `l4d2_points_spitter` 默认值: `50` - 购买一次成为spitter的机会需要多少积分
+- `l4d2_points_jockey` 默认值: `50` - 购买一次成为jockey的机会需要多少积分
+- `l4d2_points_charger` 默认值: `80` - 购买一次成为charger的机会需要多少积分
+- `l4d2_points_witch` 默认值: `80` - 购买一次witch需要多少积分
+- `l4d2_points_tank` 默认值: `1200` - 购买一次成为tank的机会需要多少积分
+- `l4d2_points_tank_heal_mult` 默认值: `4` - 坦克玩家购买治愈相对于其他特感需要多少倍的积分消耗
+- `l4d2_points_horde` 默认值: `50` - 购买一次horde需要多少积分
+- `l4d2_points_mob` 默认值: `50` - 购买一次mob需要多少积分
+- `l4d2_points_traitor` 默认值: `50` - 购买一个感染者位置需要多少积分
+- `l4d2_points_join_survivors` 默认值: `150` - 购买一次加入生还者需要多少积分
+- `l4d2_points_cikill_value` 默认值: `50` - 击杀一定数量的普通感染者可以获得多少积分
+- `l4d2_points_headshots_value` 默认值: `100` - 爆头击杀一定数量的感染者可以获得多少积分
+- `l4d2_points_sikill` 默认值: `5` - 击杀一个特感可以获得多少积分
+- `l4d2_points_tankkill` 默认值: `100` - 击杀一只坦克可以获得多少积分
+- `l4d2_points_witchkill` 默认值: `50` - 击杀一个女巫可以获得多少积分
+- `l4d2_points_witchcrown` 默认值: `70` - 秒杀一个女巫可以获得多少积分
+- `l4d2_points_heal` 默认值: `40` - 治疗一个队友可以得到多少积分
+- `l4d2_points_heal_warning` 默认值: `0` - 治疗一个不需要治疗的队友可以得到多少积分
+- `l4d2_points_protect` 默认值: `2` - 保护队友可以得到多少积分
+- `l4d2_points_revive` 默认值: `5` - 拉起一个倒地的队友可以得到多少积分
+- `l4d2_points_ledge` 默认值: `5` - 拉起一个挂边的队友可以得到多少积分
+- `l4d2_points_defib_action` 默认值: `100` - 电击器复活一个队友可以获得多少积分
+- `l4d2_points_tanksolo` 默认值: `10` - 单独击杀一只坦克可以获得多少积分
+- `l4d2_points_bile_tank` 默认值: `2` - 投掷胆汁命中坦克可以获得多少积分
+- `l4d2_points_smoke` 默认值: `2` - smoker舌头拉住生还者可以获得多少积分
+- `l4d2_points_pounce` 默认值: `2` - hunter扑倒生还者可以获得多少积分
+- `l4d2_points_charge` 默认值: `2` - charge冲撞生还者可以获得多少积分
+- `l4d2_points_impact` 默认值: `2` - spitter吐痰生还者可以获得多少积分
+- `l4d2_points_ride` 默认值: `2` - jokey骑乘生还者可以获得多少积分
+- `l4d2_points_boom` 默认值: `2` - boomer喷吐生还者可以获得多少积分
+- `l4d2_points_incap` 默认值: `10` - 击倒一个生还者可以获得多少积分
+- `l4d2_points_damage` 默认值: `2` - 造成伤害能得到多少积分
+- `l4d2_points_kill` 默认值: `1000` - 击杀一个生还者可以获得多少积分
+- `l4d2_points_special_leech0` 默认值: `10` - 购买2生命汲取需要多少积分
+- `l4d2_points_special_leech1` 默认值: `40` - 购买4生命汲取需要多少积分
+- `l4d2_points_special_leech2` 默认值: `60` - 购买6生命汲取需要多少积分
+- `l4d2_points_special_leech3` 默认值: `80` - 购买8生命汲取需要多少积分
+- `l4d2_points_special_leech4` 默认值: `100` - 购买10生命汲取需要多少积分
+- `l4d2_points_special_reload0` 默认值: `30` - 购买1.5x加速装填需要多少积分
+- `l4d2_points_special_reload1` 默认值: `60` - 购买2.0x加速装填需要多少积分
+- `l4d2_points_special_reload2` 默认值: `100` - 购买2.5x加速装填需要多少积分
+- `l4d2_points_special_reload3` 默认值: `150` - 购买3.0x加速装填需要多少积分
+- `l4d2_points_special_reload4` 默认值: `200` - 购买3.5x加速装填需要多少积分
+- `l4d2_points_free_control` 默认值: `800` - 购买当前章节免疫控制需要多少积分
+- `l4d2_points_player_teleport` 默认值: `300` - 购买传送到队友身边需要多少积分
+- `l4d2_points_weapon_reload` 默认值: `800` - 购买当前章节免换弹夹需要多少积分
+- `ps_bess_enable` 默认值: `1` - Enable BESS Module
